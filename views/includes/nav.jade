@@ -7,26 +7,12 @@ header
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-              a.brand(href='') PicoBudget
+              a.brand(href='') Little Scrum
               .nav-collapse
                 ul.nav
                   li
                     a(href='/') Home
-                  - if (!user)
-                    li
-                      a(href='/login') Register
                   li
-                    a(href='/faq') FAQ
+                    a(href='/new') New issue
                   li
-                    a(href='/about') About
-                  - if (user)
-                    li
-                      a(href='/dashboard') Dashboard
-                - if (!user)
-                  form.form-inline.pull-right(action='/authenticated', method='POST')
-                    input.input-small(type='email', placeholder='Email', name='emailInput')
-                    input.input-small(type='password', placeholder='Password', name='passwordInput')
-                    label.checkbox
-                      input(type='checkbox')
-                      | Remember me
-                    button.btn(type='submit') Sign in
+                    a(href='/fuckit') Fuck it!

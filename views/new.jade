@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    title Little Scrum
+    include includes/head.jade
+  body
+    include includes/nav.jade
+    .container
+      section#content
+        h1 Add a new issue
+        #infobox.alert.alert-info
+          span Keep the input sane, I'm too lazy to do validation! :)
+        .row
+          .span12
+            form.form-horizontal(method='POST', action='/new')
+              fieldset
+                .control-group#cg-req
+                  label.control-label(for='req') CRQ/REQ/whatever
+                  .controls
+                    input.input-xlarge#reqInput(type='text', name='req')
+                .control-group#cg-points
+                  label.control-label(for='points') Points
+                  .controls
+                    input.input-xlarge#pointsInput(type='text', name='points')
+                .control-group#cg-desc
+                  label.control-label(for='desc') Description
+                  .controls
+                    textarea.input-xlarge#descInput(type='text', name='desc', rows='6')
+                .form-actions
+                  button.btn.btn-info(type='submit') Add
+      include includes/footer.jade
+
+    include includes/bootstrap_jquery.jade

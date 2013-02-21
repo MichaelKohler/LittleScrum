@@ -1,3 +1,26 @@
-#loginform {
-  max-height: 1%;
+h1 {
+  padding-bottom: 5em;
+  font-size: 2em;
+}
+
+.table {
+  margin-left: 2em;
+}
+
+#totalopen {
+  padding-bottom: 0.3em;
+  font-size: 15em;
+}
+
+#totalopenchart {
+  margin-bottom: 50px;
+}
+
+#totalopenlabel {
+  font-size: 0.1em;
+  margin-top: 6em;  
+}
+
+blink {
+  color: #990000;
 }

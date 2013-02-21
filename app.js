@@ -1,22 +1,17 @@
 var express = require('express');
-var server = express.createServer();
+var server = express();
 var users = require('./models/userstories');
 
 server.configure(function () {
   server.set('port', 2222);
   server.set('publicfolder', 'public');
-  server.use('/bootstrap', express.static(__dirname + server.get('publicfolder') + '/bootstrap'));
-  server.use('/css', express.static(__dirname + server.get('publicfolder') + '/css'));
-  server.use('/js', express.static(__dirname + server.get('publicfolder') + '/js'));
+  server.use('/bootstrap', express.static(server.get('publicfolder') + '/bootstrap'));
+  server.use('/css', express.static(server.get('publicfolder') + '/css'));
+  server.use('/js', express.static(server.get('publicfolder') + '/js'));
   server.set('view engine', 'jade');
   server.set('views', __dirname + '/views');
   server.set('view options', { layout: false });
   server.use(express.bodyParser());
-  server.use(express.cookieParser({ secret: "keyboard cat" }));
-  var memStore = require('connect').session.MemoryStore;
-  server.use(express.session({ secret: "keyboard cat", store: memStore( {
-    reapInterval: 60000 * 10
-  })}));
 });
 
 server.configure('development', function() { 
@@ -43,3 +38,7 @@ db.open(function(err, db){
 /** ROUTES **/
 var mainsiteRoutes = require('./routes/mainsite.js');
 server.get('/', mainsiteRoutes.index);
+server.get('/new', mainsiteRoutes.newIssue);
+server.post('/new', mainsiteRoutes.addNew);
+server.post('/close', mainsiteRoutes.closeIssue);
+server.get('/fuckit', mainsiteRoutes.fuckit);

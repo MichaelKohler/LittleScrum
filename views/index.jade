@@ -7,7 +7,28 @@ html(lang='en')
     include includes/nav.jade
     .container
       section#content
-        h1 Foo
+        h1 Dashboard
+        .row
+          .span5
+            div#totalopen
+              blink 8
+              #totalopenlabel Total open points
+          .span5
+            div#totalopenchart
+              span sometext
+        .row  
+          table.table
+            th INC
+            th Status
+            th Description
+            th
+            
+              tr
+                td foo
+                td  baar
+                td foooooo  sad
+                td
+                  button.btn.btn-danger(onclick='') Close
       include includes/footer.jade
 
     include includes/bootstrap_jquery.jade
