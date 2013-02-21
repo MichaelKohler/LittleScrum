@@ -1,0 +1,158 @@
+doctype html
+html(lang='en')
+  head
+    title Login - PicoBudget - Expense tracking tool
+    include includes/head.jade
+  body
+    include includes/nav.jade
+
+    .container
+      section#content
+
+        section#loginForm
+          .alert-info.alert#loggedOut
+            button.close(date-dismiss='alert') ×
+            strong Logged out!
+            br
+            p You have been logged out. You can always log back in.
+          .alert-error.alert#fillInAllInfo
+            button.close(date-dismiss='alert') ×
+            strong Error!
+            br
+            p Please fill in all the information!
+          .alert-error.alert#credentialsWrong
+            button.close(date-dismiss='alert') ×
+            strong Error!
+            br
+            p Either the username or password were wrong! Please try again.
+          .alert-error.alert#userNotCreated
+            button.close(date-dismiss='alert') ×
+            strong Error!
+            br
+            p The user could not be created. Please try again.
+          .alert-error.alert#passwordsDidntMatch
+              button.close(date-dismiss='alert') ×
+              strong Error!
+              br
+              p The passwords didn't match.
+          .alert-error.alert#userExists
+              button.close(date-dismiss='alert') ×
+              strong Error!
+              br
+              p The given email address is already used! Please log in on the left side with your email address or use another address.
+          .alert-success.alert#userRemoved
+              button.close(date-dismiss='alert') ×
+              strong User removed!
+              br
+              p Your user account and all data associated with it was removed.
+          .row
+            .span6
+              h1 Login
+              hr
+              p If you already have an account, you can sign in here.
+              form.form-horizontal(method='POST', action='/authenticated', onsubmit='return validateLoginForm();')
+                fieldset
+                  .control-group#cg-email
+                    label.control-label(for='emailInput') eMail
+                    .controls
+                      input.input-xlarge#emailInput(type='email', name='emailInput')
+                  .control-group#cg-password
+                    label.control-label(for='passwordInput') Password
+                    .controls
+                      input.input-xlarge#passwordInput(type='password', name='passwordInput')
+                  .control-group
+                  .form-actions
+                    button.btn.btn-info(type='submit') Login
+            .span6
+              h1 Register for free
+              hr
+              form.form-horizontal(method='POST', action='/registered', onsubmit='return validateRegisterForm();')
+                fieldset
+                  .control-group#cg-email-reg
+                    label.control-label(for='emailInputReg') eMail
+                    .controls
+                      input.input-xlarge#emailInputReg(type='email', name='emailInputReg')
+                  .control-group#cg-password-reg
+                    label.control-label(for='passwordInputReg') Password
+                    .controls
+                      input.input-xlarge#passwordInputReg(type='password', name='passwordInputReg')
+                  .control-group#cg-passwordconfirm-reg
+                    label.control-label(for='passwordConfirmInputReg') Confirm password
+                    .controls
+                      input.input-xlarge#passwordConfirmInputReg(type='password', name='passwordConfirmInputReg')
+                  .form-actions
+                      button.btn.btn-info(type='submit') Login
+      include includes/footer.jade
+
+    include includes/bootstrap_jquery.jade
+
+    script(type='text/javascript')
+      // hide all notifications which should not be displayed
+      if (typeof($.getUrlVar('loggedOut')) == 'undefined')
+        $('#loggedOut').hide();
+      if (typeof($.getUrlVar('wrongCredentials')) == 'undefined')
+        $('#credentialsWrong').hide();
+      if (typeof($.getUrlVar('userNotCreated')) == 'undefined')
+        $('#userNotCreated').hide();
+      if (typeof($.getUrlVar('userExists')) == 'undefined')
+        $('#userExists').hide();
+      if (typeof($.getUrlVar('removed')) == 'undefined')
+        $('#userRemoved').hide();
+
+      $('#fillInAllInfo').hide();
+      $('#passwordsDidntMatch').hide();
+
+
+
+      // validate login form
+      function validateLoginForm() {
+        var state = true;
+
+        if ($('#emailInput').val() == '') {
+          $('#cg-email').addClass('error');
+          state = false;
+        } else {
+          $('#cg-email').removeClass('error');
+        }
+
+        if ($('#passwordInput').val() == '') {
+          $('#cg-password').addClass('error');
+          state = false;
+        } else {
+          $('#cg-password').removeClass('error');
+        }
+
+        if (!state)
+          $('#fillInAllInfo').show();
+
+        return state;
+      }
+
+
+
+      // validate register form
+      function validateRegisterForm() {
+        var state = true;
+
+        if ($('#emailInputReg').val() == '') {
+          $('#cg-email-reg').addClass('error');
+          state = false;
+        } else {
+          $('#cg-email-reg').removeClass('error');
+        }
+
+        if ($('#passwordInputReg').val() == '' || $('#passwordInputReg').val() != $('#passwordConfirmInputReg').val()) {
+          state = false;
+          $('#passwordsDidntMatch').show();
+          $('#cg-password-reg').addClass('error');
+          $('#cg-passwordconfirm-reg').addClass('error');
+        } else {
+          $('#cg-password-reg').removeClass('error');
+          $('#cg-passwordconfirm-reg').removeClass('error');
+        }
+
+        if (!state)
+          $('#fillInAllInfo').show();
+
+        return state;
+      }

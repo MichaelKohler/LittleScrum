@@ -1,0 +1,12 @@
+{
+  "name": "littlescrum",
+  "version": "0.0.1a",
+  "author": "Michael Kohler",
+  "description": "",
+  "dependencies" : {
+    "express"   :  "2.5.8",
+    "connect"   :  "*",
+    "mongodb"   :  "*",
+    "jade"      :  "*"
+  }
+}
