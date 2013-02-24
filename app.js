@@ -41,4 +41,3 @@ server.get('/', mainsiteRoutes.index);
 server.get('/new', mainsiteRoutes.newIssue);
 server.post('/new', mainsiteRoutes.addNew);
 server.post('/close', mainsiteRoutes.closeIssue);
-server.get('/fuckit', mainsiteRoutes.fuckit);
