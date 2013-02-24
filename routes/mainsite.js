@@ -1,14 +1,15 @@
 var app = require('../application-scope').init();
 
 exports.index = function(req, res) {
-  app.userstories.getAllStories(app.db, function(items) {
+  app.userstories.getAllPoints(app.db, function(allPoints) {
     app.userstories.getAllOpenStories(app.db, function(openItems) {
-      console.log('type? : ' + typeof(openItems));
-      res.render('index', { locals: {
-                   openStories: openItems,
-                   total: items.length || 0,
-                   open: openItems.length || 0
-                }});
+      app.userstories.getAllOpenPoints(app.db, function(openPoints) {
+        res.render('index', { locals: {
+                     openStories: openItems,
+                     total: allPoints || 0,
+                     open: openPoints || 0
+                  }});
+      });
     });
   });
 };
