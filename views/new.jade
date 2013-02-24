@@ -7,12 +7,12 @@ html(lang='en')
     include includes/nav.jade
     .container
       section#content
-        h1 Add a new issue
+        h2 Add a new issue
         #infobox.alert.alert-info
-          span Keep the input sane, I'm too lazy to do validation! :)
+          span Be nice to the DB! :)
         .row
           .span12
-            form.form-horizontal(method='POST', action='/new')
+            form.form-horizontal(method='POST', action='/add')
               fieldset
                 .control-group#cg-req
                   label.control-label(for='req') CRQ/REQ/whatever
@@ -26,6 +26,10 @@ html(lang='en')
                   label.control-label(for='desc') Description
                   .controls
                     textarea.input-xlarge#descInput(type='text', name='desc', rows='6')
+                .control-group#cg-assignee
+                  label.control-label(for='assignee') Assignee
+                  .controls
+                    input.input-xlarge#assigneeInput(type='text', name='assignee')
                 .form-actions
                   button.btn.btn-info(type='submit') Add
       include includes/footer.jade

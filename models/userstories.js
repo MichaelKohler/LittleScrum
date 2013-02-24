@@ -1,3 +1,9 @@
+module.exports.create = function(req, points, desc, assignee, callback) {
+  var story = { id: Math.floor(Math.random() * 10000), points: points, desc: desc,
+                assignee: assignee };
+  callback(story);
+};
+
 module.exports.getAllStories = function(db, callback) {
   db.collection('stories', function(err, collection) {
     cursor.toArray(function (err, items) {
@@ -28,6 +34,14 @@ module.exports.addStory = function(story, db, callback) {
   });  
 };
 
+module.exports.closeStory = function(story, db, callback) {
+  db.collection('stories', function(err, collection) {
+    collection.update({storyID:story.ID}, {$set: {state:0}}, function(err, result) {
+      result ? callback(true) : callback(false);
+    });
+  });  
+};
+
 module.exports.countTotalPoints = function(db, callback) {
   db.collection('stories', function(err, collection) {
     cursor.toArray(function(err, items) {
@@ -39,11 +53,3 @@ module.exports.countTotalPoints = function(db, callback) {
     });
   });
 };
-
-module.exports.sumBalance = function(accounts, callback) {
-  var sum = 0;
-  for (var i = 0; i < accounts.length; i++) {
-    sum += parseFloat(accounts[i].balance);
-  }
-  callback(sum);
-}

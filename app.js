@@ -1,6 +1,6 @@
 var express = require('express');
 var server = express();
-var users = require('./models/userstories');
+var userstories = require('./models/userstories');
 
 server.configure(function () {
   server.set('port', 2222);
@@ -38,6 +38,7 @@ db.open(function(err, db){
 /** ROUTES **/
 var mainsiteRoutes = require('./routes/mainsite.js');
 server.get('/', mainsiteRoutes.index);
-server.get('/new', mainsiteRoutes.newIssue);
-server.post('/new', mainsiteRoutes.addNew);
-server.post('/close', mainsiteRoutes.closeIssue);
+server.get('/error', mainsiteRoutes.error);
+server.get('/new', mainsiteRoutes.newStory);
+server.post('/add', mainsiteRoutes.addStory);
+server.post('/close', mainsiteRoutes.closeStory);

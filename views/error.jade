@@ -1,0 +1,16 @@
+doctype html
+html(lang='en')
+  head
+    title Little Scrum
+    include includes/head.jade
+  body
+    include includes/nav.jade
+    .container
+      section#content
+        h2 Error
+        .row
+          #alertbox.alert.alert-error
+            span There was an error, sorry!
+      include includes/footer.jade
+
+    include includes/bootstrap_jquery.jade
