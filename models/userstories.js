@@ -1,9 +1,3 @@
-module.exports.create = function(req, points, desc, assignee, callback) {
-  var story = { id: Math.floor(Math.random() * 10000), points: points, desc: desc,
-                assignee: assignee };
-  callback(story);
-};
-
 module.exports.getAllStories = function(db, callback) {
   db.collection('stories', function(err, collection) {
     cursor.toArray(function (err, items) {
