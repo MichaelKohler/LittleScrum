@@ -13,7 +13,7 @@ h2 {
 
 #totalopen {
   padding-bottom: 0.3em;
-  font-size: 15em;
+  font-size: 10em;
 }
 
 #totalopenchart {
@@ -25,6 +25,10 @@ h2 {
   margin-top: 6em;  
 }
 
-blink {
+.red {
   color: #990000;
+}
+
+.green {
+  color: #009900;
 }

@@ -1,7 +1,10 @@
 module.exports.getAllStories = function(db, callback) {
   db.collection('stories', function(err, collection) {
-    cursor.toArray(function (err, items) {
-      callback(items);
+    collection.find({}, function(err, cursor) {
+      cursor.toArray(function(err, items) {
+        console.log('fooo: ' + items.length);
+        callback(items)
+      });
     });
   });
 };
@@ -10,6 +13,7 @@ module.exports.getAllOpenStories = function(db, callback) {
   db.collection('stories', function(err, collection) {
     collection.find({state:1}, function(err, cursor) {
       cursor.toArray(function (err, items) {
+        console.log('foooopen: ' + items.length);
         callback(items);
       });
     });
@@ -28,9 +32,9 @@ module.exports.addStory = function(story, db, callback) {
   });  
 };
 
-module.exports.closeStory = function(story, db, callback) {
+module.exports.closeStory = function(storyID, db, callback) {
   db.collection('stories', function(err, collection) {
-    collection.update({storyID:story.ID}, {$set: {state:0}}, function(err, result) {
+    collection.update({storyID:storyID}, {$set: {state:0}}, function(err, result) {
       result ? callback(true) : callback(false);
     });
   });  

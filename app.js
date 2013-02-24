@@ -37,6 +37,7 @@
   var mainsiteRoutes = require('./routes/mainsite.js');
   server.get('/', mainsiteRoutes.index);
   server.get('/error', mainsiteRoutes.error);
+  server.get('/all', mainsiteRoutes.all);
   server.get('/new', mainsiteRoutes.newStory);
   server.post('/add', mainsiteRoutes.addStory);
   server.post('/close', mainsiteRoutes.closeStory);

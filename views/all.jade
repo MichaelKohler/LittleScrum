@@ -7,34 +7,20 @@ html(lang='en')
     include includes/nav.jade
     .container
       section#content
-        h1 Dashboard
-        .row
-          .span5
-            div#totalopen
-              if locals.total > 0
-                span.red #{locals.open}
-              else
-                span.green #{locals.open}
-              #totalopenlabel Total open points
-          .span5
-            div#totalopenchart
-              span sometext
+        h2 All issues
         .row  
           table.table
             th INC
             th Points
             th Description
             th Assignee
-            th
             tbody
-              for item in locals.openStories
+              for item in locals.stories
                 tr
                   td #{item.req}
                   td #{item.points}
                   td #{item.desc}
                   td #{item.assignee}
-                  td
-                    button.btn.btn-danger(onclick='') Close
       include includes/footer.jade
 
     include includes/bootstrap_jquery.jade
