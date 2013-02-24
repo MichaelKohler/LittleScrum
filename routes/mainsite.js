@@ -43,8 +43,8 @@ exports.addStory = function(req, res) {
   });
 };
 
-exports.closeStory = function(storyID, req, res) {
-  app.userstories.closeStory(storyID, app.db, function(success) {
+exports.closeStory = function(req, res) {
+  app.userstories.closeStory(req.params.id, app.db, function(success) {
     success ? res.redirect('/') : res.redirect('/error');
   });
 }

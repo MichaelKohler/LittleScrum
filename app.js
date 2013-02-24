@@ -40,6 +40,6 @@
   server.get('/all', mainsiteRoutes.all);
   server.get('/new', mainsiteRoutes.newStory);
   server.post('/add', mainsiteRoutes.addStory);
-  server.post('/close', mainsiteRoutes.closeStory);
+  server.post('/close/:id', mainsiteRoutes.closeStory);
   
 }());

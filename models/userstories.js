@@ -56,8 +56,8 @@ module.exports.addStory = function(story, db, callback) {
 
 module.exports.closeStory = function(storyID, db, callback) {
   db.collection('stories', function(err, collection) {
-    collection.update({storyID:storyID}, {$set: {state:0}}, function(err, result) {
-      result ? callback(true) : callback(false);
+    collection.update({id:parseInt(storyID)}, {$set: {state:0}}, function(err) {
+      err ? callback(false) : callback(true);
     });
   });  
 };

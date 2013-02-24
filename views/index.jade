@@ -11,7 +11,7 @@ html(lang='en')
         .row
           .span5
             div#totalopen
-              if locals.total > 0
+              if locals.open > 0
                 span.red #{locals.open}
               else
                 span.green #{locals.open}
@@ -34,7 +34,10 @@ html(lang='en')
                   td #{item.desc}
                   td #{item.assignee}
                   td
-                    button.btn.btn-danger(onclick='') Close
+                    form(action='/close/#{item.id}', method='POST')
+                      input(type='hidden', name='id', value='#{item.id})
+                      button.btn.btn-danger.small(type='submit', name='submit') Close
+            </form>
       include includes/footer.jade
 
     include includes/bootstrap_jquery.jade
