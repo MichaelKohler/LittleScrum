@@ -3,6 +3,46 @@ html(lang='en')
   head
     title Little Scrum
     include includes/head.jade
+    script(type=text/javascript')
+      $(function () {
+        var chart;
+        $(document).ready(function() {
+          // Build the chart
+          chart = new Highcharts.Chart({
+          chart: {
+              renderTo: 'totalopenchart',
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false
+          },
+          title: {
+              text: 'Open/Total ratio'
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      color: '#000000',
+                      connectorColor: '#000000',
+                      formatter: function() {
+                          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                      }
+                  }
+              }
+          },
+          series: [{
+              type: 'pie',
+              name: 'Ratio',
+              data: [
+                  ['Open',   45.0],
+                  ['Closed', 55.0]
+              ]
+          }]
+          });
+        });
+      });
   body
     include includes/nav.jade
     .container
@@ -18,7 +58,6 @@ html(lang='en')
               #totalopenlabel Total open points
           .span5
             div#totalopenchart
-              span sometext
         .row  
           table.table
             th INC
