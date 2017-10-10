@@ -3,10 +3,16 @@
   "version": "0.0.1a",
   "author": "Michael Kohler",
   "description": "",
-  "dependencies" : {
-    "express"   :  "*",
-    "connect"   :  "*",
-    "mongodb"   :  "*",
-    "jade"      :  "*"
-  }
+  "dependencies": {
+    "express": "*",
+    "connect": "*",
+    "mongodb": "*",
+    "jade": "*",
+    "snyk": "^1.42.5"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
